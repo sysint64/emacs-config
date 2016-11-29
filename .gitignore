@@ -1,0 +1,9 @@
+.cask
+*~
+session.*
+*.dat
+bookmarks
+ido.last
+*.cache
+tramp
+*.eld

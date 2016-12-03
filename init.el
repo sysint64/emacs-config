@@ -183,6 +183,17 @@
 (global-set-key (kbd "C-S-c <up>")    'buf-move-up)
 (global-set-key (kbd "C-S-c <down>")  'buf-move-down)
 
+(global-set-key (kbd "S-<f10>") 'projectile-compile-project)
+
+(require 'bookmark)
+(setq bookmark-save-flag t)
+(when (file-exists-p (concat user-emacs-directory "bookmarks"))
+    (bookmark-load bookmark-default-file t))
+(global-set-key (kbd "<f3>") 'bookmark-set)
+(global-set-key (kbd "<f4>") 'bookmark-jump)
+(global-set-key (kbd "<f5>") 'bookmark-bmenu-list)
+(setq bookmark-default-file (concat user-emacs-directory "bookmarks"))
+
 (defun my-enlarge-vert ()
   (interactive)
   (enlarge-window 2))
@@ -242,6 +253,10 @@
 (package-install 'flycheck-dmd-dub)
 
 (require 'compile)
+(add-to-list
+ 'compilation-error-regexp-alist
+ '("^\\([^ \n]+\\)(\\([0-9]+\\)): \\(?:error\\|.\\|warnin\\(g\\)\\|remar\\(k\\)\\)"
+   1 2 nil (3 . 4)))
 
 ; Undo / Redo
 (package-install 'undo-tree)

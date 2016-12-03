@@ -20,6 +20,8 @@
 (package-install 'magit)
 (package-install 'diff-hl)
 
+(global-diff-hl-mode)
+
 (require 'neotree)
 (global-set-key (kbd "M-1") 'neotree-toggle)
 (custom-set-variables

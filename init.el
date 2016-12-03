@@ -63,6 +63,7 @@
 
 (global-set-key (kbd "M-9") 'magit-log)
 (global-set-key (kbd "C-k") 'magit-commit)
+(global-set-key (kbd "C-S-k") 'magit-push)
 
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 

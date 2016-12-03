@@ -21,7 +21,7 @@
 (package-install 'diff-hl)
 
 (require 'neotree)
-(global-set-key (kbd "<f12>") 'neotree-toggle)
+(global-set-key (kbd "M-1") 'neotree-toggle)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -39,6 +39,8 @@
  '(custom-safe-themes
    (quote
     ("6db9acac88c82f69296751e6c6d808736d6ff251dcb34a1381be86efc14fef54" "64ca5a1381fa96cb86fd6c6b4d75b66dc9c4e0fc1288ee7d914ab8d2638e23a9" "3fa07dd06f4aff80df2d820084db9ecbc007541ce7f15474f1d956c846a3238f" "e30f381d0e460e5b643118bcd10995e1ba3161a3d45411ef8dfe34879c9ae333" "da538070dddb68d64ef6743271a26efd47fbc17b52cc6526d932b9793f92b718" "003a9aa9e4acb50001a006cfde61a6c3012d373c4763b48ceb9d523ceba66829" "9b1c580339183a8661a84f5864a6c363260c80136bd20ac9f00d7e1d662e936a" "af717ca36fe8b44909c984669ee0de8dd8c43df656be67a50a1cf89ee41bde9a" "73a13a70fd111a6cd47f3d4be2260b1e4b717dbf635a9caee6442c949fad41cd" "d21135150e22e58f8c656ec04530872831baebf5a1c3688030d119c114233c24" "c616e584f7268aa3b63d08045a912b50863a34e7ea83e35fcab8537b75741956" "cf284fac2a56d242ace50b6d2c438fcc6b4090137f1631e32bedf19495124600" "228c0559991fb3af427a6fa4f3a3ad51f905e20f481c697c6ca978c5683ebf43" "66aea5b7326cf4117d63c6694822deeca10a03b98135aaaddb40af99430ea237" "d6db7498e2615025c419364764d5e9b09438dfe25b044b44e1f336501acd4f5b" "de0b7245463d92cba3362ec9fe0142f54d2bf929f971a8cdf33c0bf995250bcf" "3eb93cd9a0da0f3e86b5d932ac0e3b5f0f50de7a0b805d4eb1f67782e9eb67a4" "251348dcb797a6ea63bbfe3be4951728e085ac08eee83def071e4d2e3211acc3" "1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" "962dacd99e5a99801ca7257f25be7be0cebc333ad07be97efd6ff59755e6148f" default)))
+ '(diff-hl-draw-borders nil)
+ '(diff-hl-flydiff-mode t)
  '(helm-ff-auto-update-initial-value nil)
  '(hl-paren-background-colors nil)
  '(hl-paren-colors (quote ("brown2")))
@@ -57,7 +59,10 @@
  '(window-divider-mode t))
 
 (require 'magit)
-;; (require 'diff-hl)
+(require 'diff-hl)
+
+(global-set-key (kbd "M-9") 'magit-log)
+(global-set-key (kbd "C-k") 'magit-commit)
 
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
@@ -343,6 +348,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(diff-hl-change ((t (:background "wheat"))))
+ '(diff-hl-delete ((t (:background "RosyBrown1"))))
+ '(diff-hl-insert ((t (:background "DarkSeaGreen2"))))
  '(window-divider ((t (:foreground "gray18"))))
  '(window-divider-first-pixel ((t nil)))
  '(window-divider-last-pixel ((t nil))))

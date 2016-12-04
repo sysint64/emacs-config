@@ -11,6 +11,8 @@
 ;; (toggle-truncate-lines)
 (set-default 'truncate-lines t)
 
+(set-face-attribute 'region nil :background "wheat" :foreground "saddle brown")
+
 (require 'paren)
 (require 'highlight-parentheses)
 
@@ -255,6 +257,31 @@
 (require 'thingatpt)
 (require 'thingatpt+)
 
+(defun ash-forward-string (&optional arg)
+  "Move forward to ARGth string."
+  (setq arg (or arg 1))
+  (if (not (bobp))
+      (save-match-data
+	(when (or (and (looking-at-p "\\s-*\"")
+		       (not (looking-back "\\\\")))
+		  (re-search-backward "[^\\\\]\"" nil nil))
+	  (looking-at "\\s-*\"")
+	  (goto-char (match-end 0))
+	  (forward-char -1))))
+  (while (and (> arg 0)
+	      (not (eobp))
+	      (looking-at-p "\\s-*\""))
+    (forward-sexp 1)
+    (setq arg (1- arg)))
+  (while (and (< arg 0)
+	      (not (bobp))
+	      (looking-at-p "\""))
+    (forward-sexp -1)
+    (setq arg (1+ arg)))
+  (ignore))
+
+(put 'string 'forward-op 'ash-forward-string)
+
 (defun select-symbol-under-cursor ()
   (interactive)
   (setq bounds (bounds-of-thing-at-point 'symbol))
@@ -268,8 +295,15 @@
   (set-mark (car bounds))
   (goto-char (cdr bounds)))
 
+(defun select-string-under-cursor ()
+  (interactive)
+  (setq bounds (bounds-of-thing-at-point 'string))
+  (set-mark (car bounds))
+  (goto-char (cdr bounds)))
+
 (global-set-key (kbd "C-d") 'select-symbol-under-cursor)
 (global-set-key (kbd "C-S-d") 'select-sentence-under-cursor)
+(global-set-key (kbd "C-S-s") 'select-string-under-cursor)
 
 ; Lua
 (package-install 'lua-mode)
@@ -402,7 +436,7 @@
  '(diff-hl-change ((t (:background "wheat"))))
  '(diff-hl-delete ((t (:background "RosyBrown1"))))
  '(diff-hl-insert ((t (:background "DarkSeaGreen2"))))
- '(show-paren-match ((t (:foreground "red" :weight normal))))
+ '(show-paren-match ((t (:background "wheat" :foreground "red" :weight normal))))
  '(show-paren-mismatch ((t (:foreground "#555" :weight bold))))
  '(window-divider ((t (:foreground "gray18"))))
  '(window-divider-first-pixel ((t nil)))

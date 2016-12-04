@@ -6,8 +6,8 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-;; (setq show-paren-style 'parenthesis)
-;; (show-paren-mode 1)
+(setq show-paren-style 'parenthesis)
+(show-paren-mode 1)
 ;; (toggle-truncate-lines)
 (set-default 'truncate-lines t)
 
@@ -56,6 +56,7 @@
    (quote
     (helm-ag ack helm-projectile helm neotree buffer-move web-mode git-gutter nginx-mode diff-hl magit php-mode git-modes highlight-parentheses highlight-parentheses-mode install-package rainbow-identifiers highlight-numbers highlight-symbol multiple-cursors undo-tree redo-mode lua-mode d-mode flycheck-dmd-dub flycheck ac-dcd)))
  '(protect-buffer-bury-p nil)
+ '(show-paren-mode t)
  '(window-divider-default-bottom-width 2)
  '(window-divider-default-right-width 2)
  '(window-divider-mode t))
@@ -256,7 +257,7 @@
 
 (defun select-symbol-under-cursor ()
   (interactive)
-  (setq bounds (bounds-of-thing-at-point 'word))
+  (setq bounds (bounds-of-thing-at-point 'symbol))
   (set-mark (car bounds))
   (goto-char (cdr bounds))
   )
@@ -401,6 +402,8 @@
  '(diff-hl-change ((t (:background "wheat"))))
  '(diff-hl-delete ((t (:background "RosyBrown1"))))
  '(diff-hl-insert ((t (:background "DarkSeaGreen2"))))
+ '(show-paren-match ((t (:foreground "red" :weight normal))))
+ '(show-paren-mismatch ((t (:foreground "#555" :weight bold))))
  '(window-divider ((t (:foreground "gray18"))))
  '(window-divider-first-pixel ((t nil)))
  '(window-divider-last-pixel ((t nil))))

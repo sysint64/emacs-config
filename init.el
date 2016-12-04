@@ -152,8 +152,10 @@ point reaches the beginning or end of the buffer, stop there."
 
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (require 'auto-complete-config)
-(ac-config-default)0
+(ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
+(setq ac-auto-show-menu nil)
+(ac-set-trigger-key "C-SPC")
 
 (require 'popwin)
 
@@ -322,6 +324,20 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-S-d") 'select-sentence-under-cursor)
 (global-set-key (kbd "C-S-s") 'select-string-under-cursor)
 
+(defun un-indent-by-removing-4-spaces ()
+  "remove 4 spaces from beginning of of line"
+  (interactive)
+  (save-excursion
+    (save-match-data
+      (beginning-of-line)
+      ;; get rid of tabs at beginning of line
+      (when (looking-at "^\\s-+")
+        (untabify (match-beginning 0) (match-end 0)))
+      (when (looking-at "^    ")
+        (replace-match "")))))
+
+(global-set-key (kbd "<backtab>") 'un-indent-by-removing-4-spaces)
+
 ; Lua
 (package-install 'lua-mode)
 (require 'lua-mode)
@@ -360,6 +376,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (global-unset-key (kbd "C-/"))
 (global-set-key (kbd "C-\\") 'comment-or-uncomment-region-or-line)
+(setq-default indent-tabs-mode nil)
 
 (require 'd-mode)
 (global-flycheck-mode t)
@@ -373,13 +390,17 @@ point reaches the beginning or end of the buffer, stop there."
 (require 'ac-dcd)
 
 ;;; ac-dcd
-;(require 'ac-dcd)
+;; (require 'ac-dcd)
+
 (add-hook 'd-mode-hook
 	  (lambda ()
 	    (auto-complete-mode t)
+	    (setq-default indent-tabs-mode nil)
 	    (when (featurep 'yasnippet) (yas-minor-mode-on))
 	    (ac-dcd-maybe-start-server)
 	    (ac-dcd-add-imports)
+            (setq ac-auto-show-menu nil)
+            (ac-set-trigger-key "C-SPC")
 	    (add-to-list 'ac-sources 'ac-source-dcd)
 	    (define-key d-mode-map (kbd "C-c ?") 'ac-dcd-show-ddoc-with-buffer)
 	    (define-key d-mode-map (kbd "C-c .") 'ac-dcd-goto-definition)

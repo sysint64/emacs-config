@@ -11,8 +11,6 @@
 ;; (toggle-truncate-lines)
 (set-default 'truncate-lines t)
 
-(set-face-attribute 'region nil :background "wheat" :foreground "saddle brown")
-
 (require 'paren)
 (require 'highlight-parentheses)
 
@@ -93,11 +91,30 @@
 (defun turn-on-autopair-mode () (autopair-mode 1))
 (dolist (mode autopair-modes) (add-hook (intern (concat (symbol-name mode) "-hook")) 'turn-on-autopair-mode))
 
-(defun back-to-indentation-or-beginning () (interactive)
-       (if (= (point) (progn (back-to-indentation) (point)))
-	   (beginning-of-line)))
+(defun smarter-move-beginning-of-line (arg)
+  "Move point back to indentation of beginning of line.
 
-(global-set-key (kbd "<home>") 'back-to-indentation-or-beginning)
+Move point to the first non-whitespace character on this line.
+If point is already there, move to the beginning of the line.
+Effectively toggle between the first non-whitespace character and
+the beginning of the line.
+
+If ARG is not nil or 1, move forward ARG - 1 lines first.  If
+point reaches the beginning or end of the buffer, stop there."
+  (interactive "^p")
+  (setq arg (or arg 1))
+
+  ;; Move lines first
+  (when (/= arg 1)
+    (let ((line-move-visual nil))
+      (forward-line (1- arg))))
+
+  (let ((orig-point (point)))
+    (back-to-indentation)
+    (when (= orig-point (point))
+      (move-beginning-of-line 1))))
+
+(global-set-key (kbd "<home>") 'smarter-move-beginning-of-line)
 
 (defun eval-and-replace ()
   "Replace the preceding sexp with its value."
@@ -441,3 +458,4 @@
  '(window-divider ((t (:foreground "gray18"))))
  '(window-divider-first-pixel ((t nil)))
  '(window-divider-last-pixel ((t nil))))
+(set-face-attribute 'region nil :background "wheat")

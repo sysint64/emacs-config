@@ -156,6 +156,8 @@ point reaches the beginning or end of the buffer, stop there."
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/auto-complete/ac-dict")
 (setq ac-auto-show-menu nil)
 (ac-set-trigger-key "C-SPC")
+(define-key ac-completing-map [down] nil)
+(define-key ac-completing-map [up] nil)
 
 (require 'popwin)
 
@@ -401,6 +403,8 @@ point reaches the beginning or end of the buffer, stop there."
 	    (ac-dcd-add-imports)
             (setq ac-auto-show-menu nil)
             (ac-set-trigger-key "C-SPC")
+            (define-key ac-completing-map [down] nil)
+            (define-key ac-completing-map [up] nil)
 	    (add-to-list 'ac-sources 'ac-source-dcd)
 	    (define-key d-mode-map (kbd "C-c ?") 'ac-dcd-show-ddoc-with-buffer)
 	    (define-key d-mode-map (kbd "C-c .") 'ac-dcd-goto-definition)

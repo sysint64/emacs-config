@@ -96,6 +96,18 @@
 
 (global-set-key (kbd "<home>") 'back-to-indentation-or-beginning)
 
+(defun eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+
+(global-set-key (kbd "C-c e") 'eval-and-replace)
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (delete-selection-mode 1)
@@ -212,9 +224,8 @@
 
 (global-set-key (kbd "C-(") 'my-shrink-vert)
 (global-set-key (kbd "C-)") 'my-enlarge-vert)
-(global-set-key (kbd "C-9") 'my-shrink-horz)
-(global-set-key (kbd "C-0") 'my-enlarge-horz)
-
+(global-set-key (kbd "M-C-(") 'my-shrink-horz)
+(global-set-key (kbd "M-C-)") 'my-enlarge-horz)
 (package-install 'multiple-cursors)
 (require 'multiple-cursors)
 
@@ -239,6 +250,25 @@
 
 (package-install 'rainbow-identifiers)
 (require 'rainbow-identifiers)
+
+(require 'thingatpt)
+(require 'thingatpt+)
+
+(defun select-symbol-under-cursor ()
+  (interactive)
+  (setq bounds (bounds-of-thing-at-point 'word))
+  (set-mark (car bounds))
+  (goto-char (cdr bounds))
+  )
+
+(defun select-sentence-under-cursor ()
+  (interactive)
+  (setq bounds (bounds-of-thing-at-point 'sentence))
+  (set-mark (car bounds))
+  (goto-char (cdr bounds)))
+
+(global-set-key (kbd "C-d") 'select-symbol-under-cursor)
+(global-set-key (kbd "C-S-d") 'select-sentence-under-cursor)
 
 ; Lua
 (package-install 'lua-mode)
@@ -303,6 +333,8 @@
 	    (define-key d-mode-map (kbd "C-c .") 'ac-dcd-goto-definition)
 	    (define-key d-mode-map (kbd "C-c ,") 'ac-dcd-goto-def-pop-marker)
 	    (define-key d-mode-map (kbd "C-c s") 'ac-dcd-search-symbol)
+	    (define-key d-mode-map (kbd "C-d") 'select-symbol-under-cursor)
+	    (define-key d-mode-map (kbd "C-S-d") 'select-sentence-under-cursor)
 
 	    (when (featurep 'popwin)
 	      (add-to-list 'popwin:special-display-config

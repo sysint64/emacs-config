@@ -3,11 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-	autopair-insert-opening
-	back-to-indentation-or-beginning
-	))
+        autopair-insert-opening
+        back-to-indentation-or-beginning
+        smarter-move-beginning-of-line
+        ))
 
 (setq mc/cmds-to-run-once
       '(
-	yas-expand
-	))
+        yas-expand
+        ))

@@ -9,7 +9,6 @@
 (setq show-paren-style 'parenthesis)
 (show-paren-mode 1)
 ;; (toggle-truncate-lines)
-(set-default 'truncate-lines t)
 
 (require 'paren)
 (require 'highlight-parentheses)
@@ -54,7 +53,7 @@
  '(neo-window-position (quote left))
  '(package-selected-packages
    (quote
-    (helm-ag ack helm-projectile helm neotree buffer-move web-mode git-gutter nginx-mode diff-hl magit php-mode git-modes highlight-parentheses highlight-parentheses-mode install-package rainbow-identifiers highlight-numbers highlight-symbol multiple-cursors undo-tree redo-mode lua-mode d-mode flycheck-dmd-dub flycheck ac-dcd)))
+    (racer rust-mode alchemist smartparens elixir-mode helm-ag ack helm-projectile helm neotree buffer-move web-mode git-gutter nginx-mode diff-hl magit php-mode git-modes highlight-parentheses highlight-parentheses-mode install-package rainbow-identifiers highlight-numbers highlight-symbol multiple-cursors undo-tree redo-mode lua-mode d-mode flycheck-dmd-dub flycheck ac-dcd)))
  '(protect-buffer-bury-p nil)
  '(show-paren-mode t)
  '(window-divider-default-bottom-width 2)
@@ -86,10 +85,10 @@
 (setq auto-save-list-file-name  nil) ; Don't want any .saves files
 (setq auto-save-default         nil) ; Don't want any auto saving
 
-(require 'autopair)
-(defvar autopair-modes '(r-mode ruby-mode c-mode c++-mode python-mode elisp-mode java-mode d-mode))
-(defun turn-on-autopair-mode () (autopair-mode 1))
-(dolist (mode autopair-modes) (add-hook (intern (concat (symbol-name mode) "-hook")) 'turn-on-autopair-mode))
+;; (require 'autopair)
+;; (defvar autopair-modes '(r-mode ruby-mode c-mode c++-mode python-mode elisp-mode java-mode d-mode))
+;; (defun turn-on-autopair-mode () (autopair-mode 1))
+;; (dolist (mode autopair-modes) (add-hook (intern (concat (symbol-name mode) "-hook")) 'turn-on-autopair-mode))
 
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
@@ -158,6 +157,9 @@ point reaches the beginning or end of the buffer, stop there."
 (ac-set-trigger-key "C-SPC")
 (define-key ac-completing-map [down] nil)
 (define-key ac-completing-map [up] nil)
+
+(define-key ac-completing-map (kbd "C-<down>") 'ac-next)
+(define-key ac-completing-map (kbd "C-<up>") 'ac-previous)
 
 (require 'popwin)
 
@@ -340,6 +342,50 @@ point reaches the beginning or end of the buffer, stop there."
 
 (global-set-key (kbd "<backtab>") 'un-indent-by-removing-4-spaces)
 
+;;
+
+(defun my-delete-word (arg)
+  "Delete characters forward until encountering the end of a word.
+With argument, do this that many times.
+This command does not push text to `kill-ring'."
+  (interactive "p")
+  (delete-region
+   (point)
+   (progn
+     (forward-word arg)
+     (point))))
+
+(defun my-backward-delete-word (arg)
+  "Delete characters backward until encountering the beginning of a word.
+With argument, do this that many times.
+This command does not push text to `kill-ring'."
+  (interactive "p")
+  (my-delete-word (- arg)))
+
+(defun my-delete-line ()
+  "Delete text from current position to end of line char.
+This command does not push text to `kill-ring'."
+  (interactive)
+  (delete-region
+   (point)
+   (progn (end-of-line 1) (point)))
+  (delete-char 1))
+
+(defun my-delete-line-backward ()
+  "Delete text between the beginning of the line to the cursor position.
+This command does not push text to `kill-ring'."
+  (interactive)
+  (let (p1 p2)
+    (setq p1 (point))
+    (beginning-of-line 1)
+    (setq p2 (point))
+    (delete-region p1 p2)))
+
+;; bind them to emacs's default shortcut keys:
+(global-set-key (kbd "M-d") 'my-delete-word)
+(global-set-key (kbd "C-<backspace>") 'my-backward-delete-word)
+(global-set-key (kbd "C-a") 'mark-whole-buffer)
+
 ; Lua
 (package-install 'lua-mode)
 (require 'lua-mode)
@@ -357,6 +403,35 @@ point reaches the beginning or end of the buffer, stop there."
  'compilation-error-regexp-alist
  '("^\\([^ \n]+\\)(\\([0-9]+\\)): \\(?:error\\|.\\|warnin\\(g\\)\\|remar\\(k\\)\\)"
    1 2 nil (3 . 4)))
+
+;; Elixir Mode
+
+(require 'elixir-mode)
+(require 'alchemist)
+(add-to-list 'elixir-mode-hook
+             (defun auto-activate-ruby-end-mode-for-elixir-mode ()
+               (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
+                    "\\(?:^\\|\\s-+\\)\\(?:do\\)")
+               (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
+               (ruby-end-mode +1)))
+
+(add-hook 'elixir-mode-hook
+          (lambda ()
+            (define-key elixir-mode-map (kbd "C-c ?") 'alchemist-help)
+	    (define-key elixir-mode-map (kbd "C-c .") 'alchemist-goto-definition-at-point)
+	    (define-key elixir-mode-map (kbd "C-c ,") 'alchemist-goto-jump-back)
+            ))
+
+(require 'smartparens)
+(smartparens-global-mode t)
+(sp-with-modes '(elixir-mode)
+  (sp-local-pair "fn" "end"
+                 :when '(("SPC" "RET"))
+                 :actions '(insert navigate))
+  (sp-local-pair "do" "end"
+                 :when '(("SPC" "RET"))
+                 :post-handlers '(sp-ruby-def-post-handler)
+                 :actions '(insert navigate)))
 
 ; Undo / Redo
 (package-install 'undo-tree)
@@ -394,6 +469,39 @@ point reaches the beginning or end of the buffer, stop there."
 ;;; ac-dcd
 ;; (require 'ac-dcd)
 
+;; Rust
+
+(require 'rust-mode)
+;; (require 'compile)
+
+;; (defun lcl:rust-compile-hook ()
+;;   (set (make-local-variable 'compile-command)
+;;        (if (locate-dominating-file (buffer-file-name) "Cargo.toml")
+;;            "cargo run"
+;;          (format "rustc %s && %s" (buffer-file-name)
+;;                  (file-name-sans-extension (buffer-file-name))))))
+
+;; (setq-default compilation-read-command nil)
+;; (add-hook 'rust-mode-hook 'lcl:rust-compile-hook)
+
+;; (require 'racer)
+;; (setq racer-rust-src-path "/home/andrey/dev/rustc-nightly/src/")
+
+;; (add-hook 'rust-mode-hook #'racer-mode)
+;; (add-hook 'racer-mode-hook #'eldoc-mode)
+;; (add-hook 'racer-mode-hook #'company-mode)
+
+;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+;; (setq company-tooltip-align-annotations t)
+
+;; (add-hook 'rust-mode-hook
+;; 	  (lambda ()
+;;             (define-key rust-mode-map (kbd "C-c .") 'racer-find-definition)
+;;             (define-key rust-mode-map (kbd "S-<f10>") 'compile)
+;;             ))
+
+;;
+
 (add-hook 'd-mode-hook
 	  (lambda ()
 	    (auto-complete-mode t)
@@ -403,8 +511,14 @@ point reaches the beginning or end of the buffer, stop there."
 	    (ac-dcd-add-imports)
             (setq ac-auto-show-menu nil)
             (ac-set-trigger-key "C-SPC")
+
+            (setq truncate-lines t)
             (define-key ac-completing-map [down] nil)
             (define-key ac-completing-map [up] nil)
+
+            (define-key ac-completing-map (kbd "C-<down>") 'ac-next)
+            (define-key ac-completing-map (kbd "C-<up>") 'ac-previous)
+
 	    (add-to-list 'ac-sources 'ac-source-dcd)
 	    (define-key d-mode-map (kbd "C-c ?") 'ac-dcd-show-ddoc-with-buffer)
 	    (define-key d-mode-map (kbd "C-c .") 'ac-dcd-goto-definition)
@@ -480,6 +594,9 @@ point reaches the beginning or end of the buffer, stop there."
  '(diff-hl-insert ((t (:background "DarkSeaGreen2"))))
  '(show-paren-match ((t (:background "wheat" :foreground "red" :weight normal))))
  '(show-paren-mismatch ((t (:foreground "#555" :weight bold))))
+ '(sp-pair-overlay-face ((t (:background "wheat"))))
+ '(sp-wrap-overlay-closing-pair ((t (:inherit sp-wrap-overlay-face :foreground "firebrick"))))
+ '(sp-wrap-overlay-opening-pair ((t (:inherit sp-wrap-overlay-face :foreground "forest green"))))
  '(window-divider ((t (:foreground "gray18"))))
  '(window-divider-first-pixel ((t nil)))
  '(window-divider-last-pixel ((t nil))))

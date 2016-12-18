@@ -64,6 +64,7 @@
 (require 'diff-hl)
 
 (global-set-key (kbd "M-9") 'magit-log)
+(global-set-key (kbd "M-k") 'magit-status)
 (global-set-key (kbd "C-k") 'magit-commit)
 (global-set-key (kbd "C-S-k") 'magit-push)
 
@@ -258,7 +259,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-S-l") 'mc/edit-lines)
 (global-set-key (kbd "M-S-<down>") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-S-<up>") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-M-S-l") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-M-S-j") 'mc/mark-all-like-this)
 (global-set-key (kbd "M-j") 'mc/mark-next-like-this-word)
 
 (package-install 'highlight-symbol)
@@ -399,9 +400,20 @@ This command does not push text to `kill-ring'."
 (package-install 'flycheck-dmd-dub)
 
 (require 'compile)
+
+(add-to-list
+ 'compilation-error-regexp-alist
+ '("^\\([^ \n]+\\)@\\([^ \n]+\\):\\([0-9]+\\):\\([^\n]+\\)"
+   2 3 nil (4 . 5)))
+
 (add-to-list
  'compilation-error-regexp-alist
  '("^\\([^ \n]+\\)(\\([0-9]+\\)): \\(?:error\\|.\\|warnin\\(g\\)\\|remar\\(k\\)\\)"
+   1 2 nil (3 . 4)))
+
+(add-to-list
+ 'compilation-error-regexp-alist
+ '("^\\([^ \n]+\\):\\([0-9]+\\) \\(?:error\\|.\\|warnin\\(g\\)\\|remar\\(k\\)\\)"
    1 2 nil (3 . 4)))
 
 ;; Elixir Mode
@@ -552,24 +564,64 @@ This command does not push text to `kill-ring'."
 
 ;; Dark theme
 (load-theme 'brin t)
-;; (add-to-list 'load-path "~/.emacs.d/airline-themes")
-;; (require 'airline-themes)
-;; (load-theme 'airline-murmur)
-;; End dark theme
-
-;; Light theme
-(load-theme 'mccarthy t)
 (add-to-list 'load-path "~/.emacs.d/airline-themes")
 (require 'airline-themes)
-(load-theme 'airline-doom-one)
-(set-face-foreground 'font-lock-string-face "SpringGreen4")
-(set-face-foreground 'font-lock-comment-face "dark gray")
-(set-face-foreground 'font-lock-comment-delimiter-face "dark gray")
+(load-theme 'airline-murmur)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(diff-hl-change ((t (:background "#94785e"))))
+ '(diff-hl-delete ((t (:background "#ae5151"))))
+ '(diff-hl-insert ((t (:background "#44924a"))))
+ '(show-paren-match ((t (:background "#345" :foreground "red" :weight normal))))
+ '(show-paren-mismatch ((t (:foreground "#555" :weight bold))))
+ '(sp-pair-overlay-face ((t (:background "#345"))))
+ '(sp-wrap-overlay-closing-pair ((t (:inherit sp-wrap-overlay-face :foreground "#345"))))
+ '(sp-wrap-overlay-opening-pair ((t (:inherit sp-wrap-overlay-face :foreground "forest green"))))
+ '(window-divider ((t (:foreground "gray11"))))
+ '(window-divider-first-pixel ((t nil)))
+ '(window-divider-last-pixel ((t nil))))
+(set-face-attribute 'region nil :background "#4f5b66")
+(set-face-foreground 'font-lock-comment-delimiter-face "#65737e")
 
 ;; Highlight paren
-(set-face-background 'show-paren-match "light blue")
-(set-face-foreground 'show-paren-match "blue")
-(set-face-attribute 'show-paren-match nil :weight 'normal)
+;; (set-face-background 'show-paren-match "light blue")
+;; (set-face-foreground 'show-paren-match "blue")
+;; (set-face-attribute 'show-paren-match nil :weight 'normal)
+;; End dark theme
+
+
+
+;; Light theme
+;; (load-theme 'mccarthy t)
+;; (add-to-list 'load-path "~/.emacs.d/airline-themes")
+;; (require 'airline-themes)
+;; (load-theme 'airline-doom-one)
+;; (set-face-foreground 'font-lock-string-face "SpringGreen4")
+;; (set-face-foreground 'font-lock-comment-face "dark gray")
+;; (set-face-foreground 'font-lock-comment-delimiter-face "dark gray")
+
+;; Highlight paren
+;; (set-face-background 'show-paren-match "light blue")
+;; (set-face-foreground 'show-paren-match "blue")
+;; (set-face-attribute 'show-paren-match nil :weight 'normal)
+
+;; (custom-set-faces
+;;  '(diff-hl-change ((t (:background "wheat"))))
+;;  '(diff-hl-delete ((t (:background "RosyBrown1"))))
+;;  '(diff-hl-insert ((t (:background "DarkSeaGreen2"))))
+;;  '(show-paren-match ((t (:background "wheat" :foreground "red" :weight normal))))
+;;  '(show-paren-mismatch ((t (:foreground "#555" :weight bold))))
+;;  '(sp-pair-overlay-face ((t (:background "wheat"))))
+;;  '(sp-wrap-overlay-closing-pair ((t (:inherit sp-wrap-overlay-face :foreground "firebrick"))))
+;;  '(sp-wrap-overlay-opening-pair ((t (:inherit sp-wrap-overlay-face :foreground "forest green"))))
+;;  '(window-divider ((t (:foreground "gray18"))))
+;;  '(window-divider-first-pixel ((t nil)))
+;;  '(window-divider-last-pixel ((t nil))))
+;; (set-face-attribute 'region nil :background "wheat")
 ;; End light theme
 
 (set-default-font "Anonymice Powerline-13")
@@ -582,22 +634,3 @@ This command does not push text to `kill-ring'."
       airline-utf-glyph-branch              #xe0a0
       airline-utf-glyph-readonly            #xe0a2
       airline-utf-glyph-linenumber          #xe0a1)
-
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(diff-hl-change ((t (:background "wheat"))))
- '(diff-hl-delete ((t (:background "RosyBrown1"))))
- '(diff-hl-insert ((t (:background "DarkSeaGreen2"))))
- '(show-paren-match ((t (:background "wheat" :foreground "red" :weight normal))))
- '(show-paren-mismatch ((t (:foreground "#555" :weight bold))))
- '(sp-pair-overlay-face ((t (:background "wheat"))))
- '(sp-wrap-overlay-closing-pair ((t (:inherit sp-wrap-overlay-face :foreground "firebrick"))))
- '(sp-wrap-overlay-opening-pair ((t (:inherit sp-wrap-overlay-face :foreground "forest green"))))
- '(window-divider ((t (:foreground "gray18"))))
- '(window-divider-first-pixel ((t nil)))
- '(window-divider-last-pixel ((t nil))))
-(set-face-attribute 'region nil :background "wheat")

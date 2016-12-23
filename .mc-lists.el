@@ -5,6 +5,8 @@
       '(
         autopair-insert-opening
         back-to-indentation-or-beginning
+        c-electric-semi&comma
+        select-symbol-under-cursor
         smarter-move-beginning-of-line
         ))
 

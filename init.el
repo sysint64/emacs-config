@@ -56,7 +56,9 @@
  '(neo-window-position (quote left))
  '(package-selected-packages
    (quote
-    (ivy nlinum racer rust-mode alchemist smartparens elixir-mode helm-ag ack helm-projectile helm neotree buffer-move web-mode git-gutter nginx-mode diff-hl magit php-mode git-modes highlight-parentheses highlight-parentheses-mode install-package rainbow-identifiers highlight-numbers highlight-symbol multiple-cursors undo-tree redo-mode lua-mode d-mode flycheck-dmd-dub flycheck)))
+    (ppd-sr-speedbar ivy nlinum racer rust-mode alchemist smartparens elixir-mode helm-ag ack helm-projectile helm neotree buffer-move web-mode git-gutter nginx-mode diff-hl magit php-mode git-modes highlight-parentheses highlight-parentheses-mode install-package rainbow-identifiers highlight-numbers highlight-symbol multiple-cursors undo-tree redo-mode lua-mode d-mode flycheck-dmd-dub flycheck)))
+ '(powerline-default-separator (quote bar))
+ '(powerline-display-mule-info nil)
  '(protect-buffer-bury-p nil)
  '(show-paren-mode t)
  '(window-divider-default-bottom-width 2)
@@ -157,10 +159,20 @@ point reaches the beginning or end of the buffer, stop there."
 (require 'popwin)
 
 (require 'sr-speedbar)
-(global-set-key (kbd "<f8>") 'sr-speedbar-toggle)
 (setq speedbar-use-images nil)
 (setq sr-speedbar-right-side nil)
 (speedbar-add-supported-extension ".d")
+
+(defun sb-expand-curren-file ()
+  "Expand current file in speedbar buffer"
+  (interactive)
+  (setq current-file (buffer-file-name))
+  (sr-speedbar-toggle)
+  (sr-speedbar-refresh)
+  (speedbar-find-selected-file current-file)
+  (speedbar-expand-line))
+
+(global-set-key (kbd "C-<f12>") 'sb-expand-curren-file)
 
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (require 'yasnippet)
@@ -175,7 +187,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defvar hs-special-modes-alist
   (mapcar 'purecopy
-	  '((c-mode123321
+	  '((c-mode
 	     "{" "}" "/[*/]" nil nil)
 	    (c++-mode "{" "}" "/[*/]" nil nil)
 	    (d-mode "{" "}" "/[*/]" nil nil)
@@ -249,7 +261,7 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key (kbd "C-S-l") 'mc/edit-lines)
 (global-set-key (kbd "M-S-<down>") 'mc/mark-next-like-this)
 (global-set-key (kbd "M-S-<up>") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-M-S-j") 'mc/mark-all-like-this)
+(global-set-key (kbd "M-C-S-j") 'mc/mark-all-like-this)
 (global-set-key (kbd "M-j") 'mc/mark-next-like-this-word)
 
 (package-install 'highlight-symbol)
@@ -388,6 +400,18 @@ This command does not push text to `kill-ring'."
 (package-install 'd-mode)
 (package-install 'flycheck)
 (package-install 'flycheck-dmd-dub)
+
+(font-lock-add-keywords 'd-mode
+                        '(("pragma" . font-lock-keyword-face)
+                          ("function" . font-lock-keyword-face)
+                          ("delegate" . font-lock-keyword-face)))
+
+(font-lock-add-keywords 'd-mode
+                        '(("\\<\\(TODO\\):" 1 font-lock-warning-face prepend)
+                          ("\\<\\(FIXME\\):" 1 font-lock-doc-face prepend)))
+
+(require 'column-marker)
+(add-hook 'd-mode-hook (lambda () (interactive) (column-marker-1 100)))
 
 (require 'compile)
 
@@ -564,8 +588,6 @@ This command does not push text to `kill-ring'."
 ;; (set-face-foreground 'show-paren-match "blue")
 ;; (set-face-attribute 'show-paren-match nil :weight 'normal)
 ;; End dark theme
-
-
 
 ;; Light theme
 (load-theme 'mccarthy t)

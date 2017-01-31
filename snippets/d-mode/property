@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Property getter and setter
+# key: prop
+# --
+@property ${1:ref }${2:Type} ${3:Name}() { return p_$3; }
+@property void $3(in $2 val) { p_$3 = val; }

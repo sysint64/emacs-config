@@ -291,7 +291,7 @@ Valid Values: airline-directory-full, airline-directory-shortened, nil (disabled
                                      ;; (powerline-raw (char-to-string #x2b83) center-face 'l)
 
                                      ;; Minor Modes
-                                     (powerline-minor-modes center-face 'l)
+                                     ;; (powerline-minor-modes center-face 'l)
                                      ;; (powerline-narrow center-face 'l)
 
                                      ;; Subseparator <

@@ -5,9 +5,14 @@
       '(
         autopair-insert-opening
         back-to-indentation-or-beginning
+        c-electric-brace
+        c-electric-paren
         c-electric-semi&comma
+        company-complete
+        kill-region
         select-symbol-under-cursor
         smarter-move-beginning-of-line
+        sp-remove-active-pair-overlay
         ))
 
 (setq mc/cmds-to-run-once

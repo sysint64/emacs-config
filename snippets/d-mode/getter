@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Property getter
+# key: getter
+# --
+@property ${1:Type} ${2:Name}() { return p_$2; }

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Property setter
+# key: setter
+# --
+@property void ${2:Name}(in ${1:Type} val) { p_$2 = val; }

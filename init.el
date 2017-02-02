@@ -172,7 +172,7 @@ point reaches the beginning or end of the buffer, stop there."
   (speedbar-find-selected-file current-file)
   (speedbar-expand-line))
 
-(global-set-key (kbd "C-<f12>") 'sb-expand-curren-file)
+(global-set-key (kbd "C-<f12>") 'helm-semantic-or-imenu)
 
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (require 'yasnippet)

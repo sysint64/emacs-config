@@ -10,6 +10,7 @@
         c-electric-semi&comma
         company-complete
         kill-region
+        projectile-compile-project
         select-symbol-under-cursor
         smarter-move-beginning-of-line
         sp-remove-active-pair-overlay

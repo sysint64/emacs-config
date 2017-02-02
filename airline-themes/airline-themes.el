@@ -295,15 +295,15 @@ Valid Values: airline-directory-full, airline-directory-shortened, nil (disabled
                                      ;; (powerline-narrow center-face 'l)
 
                                      ;; Subseparator <
-                                     (powerline-raw (char-to-string airline-utf-glyph-subseparator-right) center-face 'l)
+                                     ;; (powerline-raw (char-to-string airline-utf-glyph-subseparator-right) center-face 'l)
 
                                      ;; Major Mode
                                      (powerline-major-mode center-face 'l)
                                      (powerline-process center-face)
 
                                      ;; Separator <
-                                     (powerline-raw " " center-face)
-                                     (funcall separator-right center-face inner-face)
+                                     ;; (powerline-raw " " center-face)
+                                     ;; (funcall separator-right center-face inner-face)
 
                                      ;; Buffer Size
                                      (when powerline-display-buffer-size
@@ -316,7 +316,7 @@ Valid Values: airline-directory-full, airline-directory-shortened, nil (disabled
                                      (powerline-raw " " inner-face)
 
                                      ;; Separator <
-                                     (funcall separator-right inner-face outer-face)
+                                     ;; (funcall separator-right inner-face outer-face)
 
                                      ;; LN charachter
                                      (powerline-raw (char-to-string airline-utf-glyph-linenumber) outer-face 'l)

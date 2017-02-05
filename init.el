@@ -173,6 +173,7 @@ point reaches the beginning or end of the buffer, stop there."
   (speedbar-expand-line))
 
 (global-set-key (kbd "C-<f12>") 'helm-semantic-or-imenu)
+(global-set-key (kbd "<f12>") 'helm-occur)
 
 (add-to-list 'load-path "~/.emacs.d/yasnippet")
 (require 'yasnippet)
@@ -392,6 +393,24 @@ This command does not push text to `kill-ring'."
 ; Lua
 (package-install 'lua-mode)
 (require 'lua-mode)
+
+;; E2DIT
+(setq e2ml-font-lock-keywords
+      `(
+        (,"#.*" . font-lock-comment-face)
+        (,"\\btrue\\b\\|\\bfalse\\b" . font-lock-constant-face)
+        (,"\\b[a-zA-Z]\\([a-zA-Z0-9_]+\\)?\\b:" . font-lock-variable-name-face)
+        (,"\\b[A-Z]\\([a-zA-Z0-9_]+\\)?\\b\\|include" . font-lock-keyword-face)
+        (,"[0-9.]+" . font-lock-constant-face)
+        ))
+
+(define-derived-mode e2ml-mode fundamental-mode "e2ml mode"
+  "Major mode for editing E2ML (E2DIT Minimal Language)"
+  (set (make-local-variable 'comment-start) "# ")
+  (setq font-lock-defaults '((e2ml-font-lock-keywords))))
+
+(add-to-list 'auto-mode-alist '("\\.e2t\\'" . e2ml-mode))
+(add-to-list 'auto-mode-alist '("\\.e2ml\\'" . e2ml-mode))
 
 ; VCS
 
@@ -627,7 +646,7 @@ This command does not push text to `kill-ring'."
 (set-face-attribute 'region nil :background "wheat")
 ;; End light theme
 
-(set-default-font "Anonymice Powerline-13")
+(set-default-font "Inconsolata-g-12")
 (setq powerline-utf-8-separator-left        #xe0b0
       powerline-utf-8-separator-right       #xe0b2
       airline-utf-glyph-separator-left      #xe0b0

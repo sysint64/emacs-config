@@ -42,7 +42,7 @@
  '(company-dcd-server-executable "/home/andrey/lib/DCD/dcd-server")
  '(custom-safe-themes
    (quote
-    ("6db9acac88c82f69296751e6c6d808736d6ff251dcb34a1381be86efc14fef54" "64ca5a1381fa96cb86fd6c6b4d75b66dc9c4e0fc1288ee7d914ab8d2638e23a9" "3fa07dd06f4aff80df2d820084db9ecbc007541ce7f15474f1d956c846a3238f" "e30f381d0e460e5b643118bcd10995e1ba3161a3d45411ef8dfe34879c9ae333" "da538070dddb68d64ef6743271a26efd47fbc17b52cc6526d932b9793f92b718" "003a9aa9e4acb50001a006cfde61a6c3012d373c4763b48ceb9d523ceba66829" "9b1c580339183a8661a84f5864a6c363260c80136bd20ac9f00d7e1d662e936a" "af717ca36fe8b44909c984669ee0de8dd8c43df656be67a50a1cf89ee41bde9a" "73a13a70fd111a6cd47f3d4be2260b1e4b717dbf635a9caee6442c949fad41cd" "d21135150e22e58f8c656ec04530872831baebf5a1c3688030d119c114233c24" "c616e584f7268aa3b63d08045a912b50863a34e7ea83e35fcab8537b75741956" "cf284fac2a56d242ace50b6d2c438fcc6b4090137f1631e32bedf19495124600" "228c0559991fb3af427a6fa4f3a3ad51f905e20f481c697c6ca978c5683ebf43" "66aea5b7326cf4117d63c6694822deeca10a03b98135aaaddb40af99430ea237" "d6db7498e2615025c419364764d5e9b09438dfe25b044b44e1f336501acd4f5b" "de0b7245463d92cba3362ec9fe0142f54d2bf929f971a8cdf33c0bf995250bcf" "3eb93cd9a0da0f3e86b5d932ac0e3b5f0f50de7a0b805d4eb1f67782e9eb67a4" "251348dcb797a6ea63bbfe3be4951728e085ac08eee83def071e4d2e3211acc3" "1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" "962dacd99e5a99801ca7257f25be7be0cebc333ad07be97efd6ff59755e6148f" default)))
+    ("01e067188b0b53325fc0a1c6e06643d7e52bc16b6653de2926a480861ad5aa78" "c79c2eadd3721e92e42d2fefc756eef8c7d248f9edefd57c4887fbf68f0a17af" "256a381a0471ad344e1ed33470e4c28b35fb4489a67eb821181e35f080083c36" "b181ea0cc32303da7f9227361bb051bbb6c3105bb4f386ca22a06db319b08882" "2b8dff32b9018d88e24044eb60d8f3829bd6bbeab754e70799b78593af1c3aba" "158013ec40a6e2844dbda340dbabda6e179a53e0aea04a4d383d69c329fba6e6" "b563a87aa29096e0b2e38889f7a5e3babde9982262181b65de9ce8b78e9324d5" "6db9acac88c82f69296751e6c6d808736d6ff251dcb34a1381be86efc14fef54" "64ca5a1381fa96cb86fd6c6b4d75b66dc9c4e0fc1288ee7d914ab8d2638e23a9" "3fa07dd06f4aff80df2d820084db9ecbc007541ce7f15474f1d956c846a3238f" "e30f381d0e460e5b643118bcd10995e1ba3161a3d45411ef8dfe34879c9ae333" "da538070dddb68d64ef6743271a26efd47fbc17b52cc6526d932b9793f92b718" "003a9aa9e4acb50001a006cfde61a6c3012d373c4763b48ceb9d523ceba66829" "9b1c580339183a8661a84f5864a6c363260c80136bd20ac9f00d7e1d662e936a" "af717ca36fe8b44909c984669ee0de8dd8c43df656be67a50a1cf89ee41bde9a" "73a13a70fd111a6cd47f3d4be2260b1e4b717dbf635a9caee6442c949fad41cd" "d21135150e22e58f8c656ec04530872831baebf5a1c3688030d119c114233c24" "c616e584f7268aa3b63d08045a912b50863a34e7ea83e35fcab8537b75741956" "cf284fac2a56d242ace50b6d2c438fcc6b4090137f1631e32bedf19495124600" "228c0559991fb3af427a6fa4f3a3ad51f905e20f481c697c6ca978c5683ebf43" "66aea5b7326cf4117d63c6694822deeca10a03b98135aaaddb40af99430ea237" "d6db7498e2615025c419364764d5e9b09438dfe25b044b44e1f336501acd4f5b" "de0b7245463d92cba3362ec9fe0142f54d2bf929f971a8cdf33c0bf995250bcf" "3eb93cd9a0da0f3e86b5d932ac0e3b5f0f50de7a0b805d4eb1f67782e9eb67a4" "251348dcb797a6ea63bbfe3be4951728e085ac08eee83def071e4d2e3211acc3" "1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" "962dacd99e5a99801ca7257f25be7be0cebc333ad07be97efd6ff59755e6148f" default)))
  '(diff-hl-draw-borders nil)
  '(diff-hl-flydiff-mode t)
  '(helm-ff-auto-update-initial-value nil)
@@ -56,7 +56,7 @@
  '(neo-window-position (quote left))
  '(package-selected-packages
    (quote
-    (ppd-sr-speedbar ivy nlinum racer rust-mode alchemist smartparens elixir-mode helm-ag ack helm-projectile helm neotree buffer-move web-mode git-gutter nginx-mode diff-hl magit php-mode git-modes highlight-parentheses highlight-parentheses-mode install-package rainbow-identifiers highlight-numbers highlight-symbol multiple-cursors undo-tree redo-mode lua-mode d-mode flycheck-dmd-dub flycheck)))
+    (sphinx-doc helm-gtags ppd-sr-speedbar ivy nlinum racer rust-mode alchemist smartparens elixir-mode helm-ag ack helm-projectile helm neotree buffer-move web-mode git-gutter nginx-mode diff-hl magit php-mode git-modes highlight-parentheses highlight-parentheses-mode install-package rainbow-identifiers highlight-numbers highlight-symbol multiple-cursors undo-tree redo-mode lua-mode d-mode flycheck-dmd-dub flycheck)))
  '(powerline-default-separator (quote bar))
  '(powerline-display-mule-info nil)
  '(protect-buffer-bury-p nil)
@@ -205,10 +205,11 @@ point reaches the beginning or end of the buffer, stop there."
 (add-to-list 'projectile-globally-ignored-directories ".dub")
 
 (global-set-key (kbd "<f9>") 'hs-toggle-hiding)
-(global-set-key (kbd "C-<f9>") 'hs-hide-all)
+(global-set-key (kbd "C-<f9>") 'hs-hide-level)
 (global-set-key (kbd "C-S-<f9>") 'hs-show-all)
 (global-set-key (kbd "C-S-n") 'helm-projectile)
 (global-set-key (kbd "C-n") 'helm-projectile-grep)
+(global-set-key (kbd "C-e") 'helm-projectile-recentf)
 
 ;; (global-set-key (kbd "<XF86Calculator>") 'quick-calc)
 
@@ -395,22 +396,22 @@ This command does not push text to `kill-ring'."
 (require 'lua-mode)
 
 ;; E2DIT
-(setq e2ml-font-lock-keywords
+(setq rpdl-font-lock-keywords
       `(
         (,"#.*" . font-lock-comment-face)
         (,"\\btrue\\b\\|\\bfalse\\b" . font-lock-constant-face)
-        (,"\\b[a-zA-Z]\\([a-zA-Z0-9_]+\\)?\\b:" . font-lock-variable-name-face)
+        (,"\\b[a-zA-Z]\\([a-zA-Z0-9_]+\\)?\\b\\(\s+\\)?:" . font-lock-variable-name-face)
         (,"\\b[A-Z]\\([a-zA-Z0-9_]+\\)?\\b\\|include" . font-lock-keyword-face)
-        (,"[0-9.]+" . font-lock-constant-face)
+        (,"\\b[0-9.]+\\b" . font-lock-constant-face)
         ))
 
-(define-derived-mode e2ml-mode fundamental-mode "e2ml mode"
-  "Major mode for editing E2ML (E2DIT Minimal Language)"
+(define-derived-mode rpdl-mode fundamental-mode "rpdl mode"
+  "Major mode for editing RPDL (RedPaws Declarative Language)"
   (set (make-local-variable 'comment-start) "# ")
-  (setq font-lock-defaults '((e2ml-font-lock-keywords))))
+  (setq font-lock-defaults '((rpdl-font-lock-keywords))))
 
-(add-to-list 'auto-mode-alist '("\\.e2t\\'" . e2ml-mode))
-(add-to-list 'auto-mode-alist '("\\.e2ml\\'" . e2ml-mode))
+(add-to-list 'auto-mode-alist '("\\rdl\\'" . rpdl-mode))
+(add-to-list 'auto-mode-alist '("\\.rpdl\\'" . rpdl-mode))
 
 ; VCS
 
@@ -521,6 +522,11 @@ This command does not push text to `kill-ring'."
 ;; Rust
 
 (require 'rust-mode)
+(require 'toml-mode)
+
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
 ;; (require 'compile)
 
 ;; (defun lcl:rust-compile-hook ()
@@ -533,7 +539,13 @@ This command does not push text to `kill-ring'."
 ;; (setq-default compilation-read-command nil)
 ;; (add-hook 'rust-mode-hook 'lcl:rust-compile-hook)
 
-;; (require 'racer)
+(require 'racer)
+
+(setq racer-rust-src-path "~/.local/share/rust_src/src")
+(setq racer-cmd "~/.cargo/bin/racer")
+
+(add-hook 'rust-mode-hook #'racer-activate)
+(eval-after-load "rust-mode" '(require 'racer))
 ;; (setq racer-rust-src-path "/home/andrey/dev/rustc-nightly/src/")
 
 ;; (add-hook 'rust-mode-hook #'racer-mode)
@@ -543,11 +555,15 @@ This command does not push text to `kill-ring'."
 ;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 ;; (setq company-tooltip-align-annotations t)
 
-;; (add-hook 'rust-mode-hook
-;; 	  (lambda ()
-;;             (define-key rust-mode-map (kbd "C-c .") 'racer-find-definition)
-;;             (define-key rust-mode-map (kbd "S-<f10>") 'compile)
-;;             ))
+(require 'flycheck-rust)
+(eval-after-load 'flycheck
+ '(add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+(add-hook 'rust-mode-hook
+	  (lambda ()
+            (define-key rust-mode-map (kbd "C-c .") 'racer-find-definition)
+            (define-key rust-mode-map (kbd "<f10>") 'compile)
+            ))
 
 ;;
 
@@ -577,56 +593,22 @@ This command does not push text to `kill-ring'."
 (setq powerline-arrow-shape 'half)
 (powerline-default-theme)
 
-;; Dark theme
-(load-theme 'brin t)
-;; (add-to-list 'load-path "~/.emacs.d/airline-themes")
-;; (require 'airline-themes)
-;; (load-theme 'airline-murmur)
-
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(diff-hl-change ((t (:background "#94785e"))))
-;;  '(diff-hl-delete ((t (:background "#ae5151"))))
-;;  '(diff-hl-insert ((t (:background "#44924a"))))
-;;  '(show-paren-match ((t (:background "#345" :foreground "red" :weight normal))))
-;;  '(show-paren-mismatch ((t (:foreground "#555" :weight bold))))
-;;  '(sp-pair-overlay-face ((t (:background "#345"))))
-;;  '(sp-wrap-overlay-closing-pair ((t (:inherit sp-wrap-overlay-face :foreground "#345"))))
-;;  '(sp-wrap-overlay-opening-pair ((t (:inherit sp-wrap-overlay-face :foreground "forest green"))))
-;;  '(window-divider ((t (:foreground "gray11"))))
-;;  '(window-divider-first-pixel ((t nil)))
-;;  '(window-divider-last-pixel ((t nil))))
-;; (set-face-attribute 'region nil :background "#4f5b66")
-;; (set-face-foreground 'font-lock-comment-delimiter-face "#65737e")
-
-;; Highlight paren
-;; (set-face-background 'show-paren-match "light blue")
-;; (set-face-foreground 'show-paren-match "blue")
-;; (set-face-attribute 'show-paren-match nil :weight 'normal)
-;; End dark theme
-
-;; Light theme
-(load-theme 'mccarthy t)
 (add-to-list 'load-path "~/.emacs.d/airline-themes")
 (require 'airline-themes)
-(load-theme 'airline-doom-one)
-(set-face-foreground 'font-lock-string-face "SpringGreen4")
-(set-face-foreground 'font-lock-comment-face "dark gray")
-(set-face-foreground 'font-lock-comment-delimiter-face "dark gray")
 
-;; Highlight paren
-(set-face-background 'show-paren-match "light blue")
-(set-face-foreground 'show-paren-match "blue")
-(set-face-attribute 'show-paren-match nil :weight 'normal)
+(require 'dark-theme)
+;; (require 'light-theme)
 
-(set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
-
-(set-face-foreground 'font-lock-constant-face "#DA3C01")
-(set-face-attribute 'font-lock-constant-face nil :weight 'normal)
-
+(set-default-font "Inconsolata-g-12")
+(setq powerline-utf-8-separator-left        #xe0b0
+      powerline-utf-8-separator-right       #xe0b2
+      airline-utf-glyph-separator-left      #xe0b0
+      airline-utf-glyph-separator-right     #xe0b2
+      airline-utf-glyph-subseparator-left   #xe0b1
+      airline-utf-glyph-subseparator-right  #xe0b3
+      airline-utf-glyph-branch              #xe0a0
+      airline-utf-glyph-readonly            #xe0a2
+      airline-utf-glyph-linenumber          #xe0a1)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -643,16 +625,3 @@ This command does not push text to `kill-ring'."
  '(window-divider ((t (:foreground "gray18"))))
  '(window-divider-first-pixel ((t nil)))
  '(window-divider-last-pixel ((t nil))))
-(set-face-attribute 'region nil :background "wheat")
-;; End light theme
-
-(set-default-font "Inconsolata-g-12")
-(setq powerline-utf-8-separator-left        #xe0b0
-      powerline-utf-8-separator-right       #xe0b2
-      airline-utf-glyph-separator-left      #xe0b0
-      airline-utf-glyph-separator-right     #xe0b2
-      airline-utf-glyph-subseparator-left   #xe0b1
-      airline-utf-glyph-subseparator-right  #xe0b3
-      airline-utf-glyph-branch              #xe0a0
-      airline-utf-glyph-readonly            #xe0a2
-      airline-utf-glyph-linenumber          #xe0a1)

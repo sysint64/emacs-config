@@ -6,6 +6,7 @@
         autopair-insert-opening
         back-to-indentation-or-beginning
         c-electric-brace
+        c-electric-colon
         c-electric-paren
         c-electric-semi&comma
         company-complete

@@ -395,7 +395,7 @@ This command does not push text to `kill-ring'."
 (package-install 'lua-mode)
 (require 'lua-mode)
 
-;; E2DIT
+;; RPDL
 (setq rpdl-font-lock-keywords
       `(
         (,"#.*" . font-lock-comment-face)
@@ -493,8 +493,9 @@ This command does not push text to `kill-ring'."
   (interactive)
   (let (beg end)
     (if (region-active-p)
-	(setq beg (region-beginning) end (region-end))
-      (setq beg (line-beginning-position) end (line-end-position)))
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (line-beginning-position) end (line-end-position))
+      (next-line))
     (comment-or-uncomment-region beg end)))
 
 (global-unset-key (kbd "C-/"))
@@ -596,8 +597,8 @@ This command does not push text to `kill-ring'."
 (add-to-list 'load-path "~/.emacs.d/airline-themes")
 (require 'airline-themes)
 
-(require 'dark-theme)
-;; (require 'light-theme)
+;; (require 'dark-theme)
+(require 'light-theme)
 
 (set-default-font "Inconsolata-g-12")
 (setq powerline-utf-8-separator-left        #xe0b0

@@ -514,8 +514,8 @@
 	      (current-prefix-arg '-)
 	      (sym (cadr test)))
 	  (noflet ((projectile-project-vcs () 'git)
-		   (read-string (prompt initial &rest args)
-				(if (should (equal sym initial)) initial))
+               (read-string (prompt initial-input history default-value &rest args)
+                            (if (should (equal sym default-value)) default-value))
 		   (vc-git-grep (regexp files dir)
 				(progn (should (equal sym regexp))
 				       (should (equal (car (last test)) files))
@@ -676,11 +676,30 @@
          "project/spec/models/food/sea_spec.rb")
       (let ((projectile-indexing-method 'native))
         (noflet ((projectile-project-type () 'rails-rspec)
-                 (projectile-project-root
-                  () (file-truename (expand-file-name "project/"))))
+                 (projectile-project-root () (file-truename (expand-file-name "project/"))))
           (should (equal "app/models/food/sea.rb"
                          (projectile-find-matching-file
                           "spec/models/food/sea_spec.rb"))))))))
+
+(ert-deftest projectile-test-find-matching-test/file-custom-project ()
+  (projectile-test-with-sandbox
+   (projectile-test-with-files
+     ("project/src/foo/"
+      "project/src/bar/"
+      "project/test/foo/"
+      "project/test/bar/"
+      "project/src/foo/foo.service.js"
+      "project/src/bar/bar.service.js"
+      "project/test/foo/foo.service.spec.js"
+      "project/test/bar/bar.service.spec.js")
+     (let* ((projectile-indexing-method 'native)
+            (reg (projectile-register-project-type 'npm-project '("somefile") :test-suffix ".spec")))
+        (noflet ((projectile-project-type () 'npm-project)
+                 (projectile-project-root () (file-truename (expand-file-name "project/"))))
+          (let ((test-file (projectile-find-matching-test "src/foo/foo.service.js"))
+                (impl-file (projectile-find-matching-file "test/bar/bar.service.spec.js")))
+            (should (equal "test/foo/foo.service.spec.js" test-file))
+            (should (equal "src/bar/bar.service.js" impl-file))))))))
 
 (ert-deftest projectile-test-exclude-out-of-project-submodules ()
   (projectile-test-with-files

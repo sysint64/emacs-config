@@ -9,12 +9,15 @@
         c-electric-colon
         c-electric-paren
         c-electric-semi&comma
+        c-electric-star
         company-complete
         kill-region
+        my-backward-delete-word
         projectile-compile-project
         select-symbol-under-cursor
         smarter-move-beginning-of-line
         sp-remove-active-pair-overlay
+        un-indent-by-removing-4-spaces
         ))
 
 (setq mc/cmds-to-run-once

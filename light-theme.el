@@ -13,7 +13,13 @@
 (set-face-attribute 'font-lock-keyword-face nil :weight 'bold)
 
 (set-face-foreground 'font-lock-constant-face "#DA3C01")
-(set-face-attribute 'font-lock-constant-face nil :weight 'normal)
+(set-face-attribute 'font-lock-constant-face nil :weight 'bold)
+(set-face-foreground 'font-lock-function-name-face "#DA3C01")
+
+(set-face-foreground 'font-lock-constant-face "#3b5998")
+(set-face-foreground 'vertical-border (face-background 'vertical-border))
+(setq window-divider-default-right-width 2)
+(window-divider-mode)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -32,5 +38,11 @@
  '(window-divider-first-pixel ((t nil)))
  '(window-divider-last-pixel ((t nil))))
 (set-face-attribute 'region nil :background "wheat")
+
+(setq rainbow-identifiers-choose-face-function
+      'rainbow-identifiers-cie-l*a*b*-choose-face
+      rainbow-identifiers-cie-l*a*b*-lightness 50
+      rainbow-identifiers-cie-l*a*b*-saturation 50
+      rainbow-identifiers-cie-l*a*b*-color-count 65536)
 
 (provide 'light-theme)

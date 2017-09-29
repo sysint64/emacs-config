@@ -6,23 +6,32 @@
 
 * Consider Ensime configuration file as root marker, `.ensime`.
 * [#1057](https://github.com/bbatsov/projectile/issues/1057): Make it possible to disable automatic project tracking via `projectile-track-known-projects-automatically`.
+* Added ability to specify test files suffix and prefix at the project registration.
 
 ### Changes
 
+* [#1129](https://github.com/bbatsov/projectile/pull/1129): Fix TRAMP issues.
 * Add R DESCRIPTION file to `projectile-project-root-files`.
 * Ignore backup files in `projectile-get-other-files`.
 * Ignore Ensime cache directory, `.ensime_cache`.
 * [#364](https://github.com/bbatsov/projectile/issues/364): `projectile-add-known-project` can now be used interactively.
 * `projectile-mode` is now a global mode.
 * `projectile-find-tag` now defaults to xref on Emacs 25.1+.
+* Add relation between `.h` and `.cc` files in `projectile-other-file-alist`.
+* Cache the name of the current project for mode-line display of the project name.
+* [#1078](https://github.com/bbatsov/projectile/issues/1078): For projectile-grep/ag use default value like grep/rgrep/ag.
+* Don't treat `package.json` as a project marker.
 
 ### Bugs fixed
 
+* [#1072](https://github.com/bbatsov/projectile/issues/1072): Create test files only within the project.
 * [#1063](https://github.com/bbatsov/projectile/issues/1063): Support Fossil checkouts on Windows.
 * [#1024](https://github.com/bbatsov/projectile/issues/1024): Do not cache ignored project files.
 * [#1022](https://github.com/bbatsov/projectile/issues/1022): Scan for Fossil's checkout DB, not its config DB.
 * [#1007](https://github.com/bbatsov/projectile/issues/1007): Make use of `projectile-go-function`.
 * [#1011](https://github.com/bbatsov/projectile/issues/1011): Save project files before running project tests.
+* [#1099](https://github.com/bbatsov/projectile/issues/1099): Fix the behaviour of `projectile-purge-dir-from-cache`.
+* [#1067](https://github.com/bbatsov/projectile/issues/1067): Don't mess up `default-directory` after switching projects.
 
 ## 0.14.0 (2016-07-08)
 
